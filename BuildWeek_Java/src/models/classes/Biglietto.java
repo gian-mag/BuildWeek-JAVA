@@ -39,10 +39,10 @@ public class Biglietto {
 
 	@ManyToOne
 	@JoinColumn(name="id")
-	@Column(name = "rivenditore_id")
 	private Rivenditore rivenditore;
 	
 	@ManyToMany(mappedBy = "biglietti")
+	@ToString.Exclude
 	private Set<Mezzo> mezzo;
 	
 }
