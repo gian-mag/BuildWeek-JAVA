@@ -3,9 +3,8 @@ package models.classes;
 import lombok.*;
 import models.enums.Status;
 
-import java.util.Set;
-
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,20 +13,15 @@ import javax.persistence.*;
 @ToString
 @Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Mezzi {
+public class Deposito {
     @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
-    private Status status = Status.SERVIZIO;
-    private Set<Biglietto> biglietti;
-    
-    public void toggleStatus() {
-    	if(status == Status.SERVIZIO) {
-    		status = Status.MANUTENZIONE;
-    	} else {
-    		status = Status.SERVIZIO;
-    	}
-    }
-    
+    private int id;
+
+    @Column(name = "id_mezzo")
+    private Mezzi mezzo;
+    @Column(name = "status_mezzo")
+    private Status statusMezzo;
+    private LocalDate data = LocalDate.now();
 }

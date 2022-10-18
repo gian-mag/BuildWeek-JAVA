@@ -1,12 +1,20 @@
 package models.classes;
 
-import java.util.Date;
-
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import models.enums.Zona;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 public class Tratta {
 	
@@ -15,44 +23,8 @@ public class Tratta {
 	
 	private Zona partenza;
 	private Zona capolinea;
-	private Date tempoMedio;
+	private int tempoMedio;
 	
-	public Tratta() {}
-
-	public Tratta(Zona partenza, Zona capolinea, Date tempoMedio) {
-		this.partenza = partenza;
-		this.capolinea = capolinea;
-		this.tempoMedio = tempoMedio;
-	}
-
-	public Zona getPartenza() {
-		return partenza;
-	}
-
-	public void setPartenza(Zona partenza) {
-		this.partenza = partenza;
-	}
-
-	public Zona getCapolinea() {
-		return capolinea;
-	}
-
-	public void setCapolinea(Zona capolinea) {
-		this.capolinea = capolinea;
-	}
-
-	public Date getTempoMedio() {
-		return tempoMedio;
-	}
-
-	public void setTempoMedio(Date tempoMedio) {
-		this.tempoMedio = tempoMedio;
-	}
-
-	public int getId() {
-		return id;
-	}
-	
-	
+	private Set<Mezzi> mezzi; 
 
 }

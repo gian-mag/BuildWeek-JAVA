@@ -7,8 +7,18 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import models.enums.Emissione;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 public class Abbonamento extends Biglietto {
 
@@ -22,47 +32,6 @@ public class Abbonamento extends Biglietto {
 
 	private LocalDate dataEmissione = LocalDate.now();
 
-	private boolean validità = true;
-
-	public Abbonamento() {
-	}
-
-	public Abbonamento(Emissione emissione, LocalDate dataEmissione, boolean validità) {
-		this.emissione = emissione;
-		this.dataEmissione = dataEmissione;
-		this.validità = validità;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Emissione getEmissione() {
-		return emissione;
-	}
-
-	public void setEmissione(Emissione emissione) {
-		this.emissione = emissione;
-	}
-
-	public Utente getUtente() {
-		return utente;
-	}
-
-	public void setUtente(Utente utente) {
-		this.utente = utente;
-	}
-
-	public LocalDate getDataEmissione() {
-		return dataEmissione;
-	}
-
-	public void setDataEmissione(LocalDate dataEmissione) {
-		this.dataEmissione = dataEmissione;
-	}
+	private LocalDate validità = (emissione == Emissione.SETTIMANALE ? LocalDate.now().plusDays(7) : LocalDate.now().plusMonths(1));
 
 }

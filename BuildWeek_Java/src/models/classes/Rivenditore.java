@@ -10,9 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="Servizio", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name="servizio", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Rivenditore")
 public class Rivenditore {
 	
@@ -20,30 +32,6 @@ public class Rivenditore {
 	private int id;
 	
 	private Set<Biglietto> bigliettiEmessi;
-	private Set<Abbonamento> abbonamentiEmessi;
-	
-	public Rivenditore() {}
-
-	public Set<Biglietto> getBigliettiEmessi() {
-		return bigliettiEmessi;
-	}
-
-	public void setBigliettiEmessi(Set<Biglietto> bigliettiEmessi) {
-		this.bigliettiEmessi = bigliettiEmessi;
-	}
-
-	public Set<Abbonamento> getAbbonamentiEmessi() {
-		return abbonamentiEmessi;
-	}
-
-	public void setAbbonamentiEmessi(Set<Abbonamento> abbonamentiEmessi) {
-		this.abbonamentiEmessi = abbonamentiEmessi;
-	}
-
-	public int getId() {
-		return id;
-	}
-	
-	
+//	private Set<Abbonamento> abbonamentiEmessi;
 
 }
