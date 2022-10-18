@@ -12,15 +12,14 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @Entity
-//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Deposito {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
     @Column(name = "id_mezzo")
-    private Mezzi mezzo;
+    private Mezzo mezzo;
     @Column(name = "status_mezzo")
     private Status statusMezzo;
     private LocalDate data = LocalDate.now();

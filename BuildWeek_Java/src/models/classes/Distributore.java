@@ -1,5 +1,6 @@
 package models.classes;
 
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,6 +24,7 @@ import models.enums.StatoServizio;
 public class Distributore extends Rivenditore{
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "stato_servizio")
 	private StatoServizio inServizio;
 
 }

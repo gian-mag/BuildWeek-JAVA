@@ -4,7 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,12 +26,25 @@ import lombok.ToString;
 public class Viaggio {
 	
 	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private Mezzi mezzo;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	@Column(name = "mezzo_id")
+	private Mezzo mezzo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	@Column(name = "tratta_id")
 	private Tratta tratta;
 	
-	@Column(name="durata_tragitto" )
-	private LocalDate durataTragitto;
+	@Column(name="orario_partenza" )
+	private LocalDate orarioPartenza;
+	
+	@Column(name="orario_arrivo" )
+	private LocalDate orarioArrivo;
+	
+	
 
 }

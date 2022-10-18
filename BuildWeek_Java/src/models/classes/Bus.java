@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Bus extends Mezzi {
+@DiscriminatorValue("Bus")
+public class Bus extends Mezzo {
 	@Column(name = "numero_posti")
 	private int numeroPosti = 30;
 }

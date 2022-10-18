@@ -2,10 +2,10 @@ package models.classes;
 
 import java.time.LocalDate;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +20,7 @@ import models.enums.Emissione;
 @Setter
 @ToString
 @Entity
+@DiscriminatorValue("Abbonamento")
 public class Abbonamento extends Biglietto {
 
 	@Enumerated(EnumType.STRING)
