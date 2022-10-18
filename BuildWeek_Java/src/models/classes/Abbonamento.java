@@ -22,9 +22,6 @@ import models.enums.Emissione;
 @Entity
 public class Abbonamento extends Biglietto {
 
-	@Id
-	private int id;
-
 	@Enumerated(EnumType.STRING)
 	private Emissione emissione;
 
