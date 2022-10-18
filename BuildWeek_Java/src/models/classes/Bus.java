@@ -11,7 +11,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Tram extends Mezzi {
+public class Bus extends Mezzi {
 	@Column(name = "numero_posti")
-	private int numeroPosti = 50;
+	private int numeroPosti = 30;
 }
