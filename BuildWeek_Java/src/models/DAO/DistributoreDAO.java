@@ -8,7 +8,7 @@ import models.JpaUtil.JpaUtil;
 import models.classes.Distributore;
 
 public class DistributoreDAO {
-	
+
 	public static void save(Distributore a) {
 
 		EntityManagerFactory emf = JpaUtil.getEntityManagerFactory();
@@ -20,7 +20,7 @@ public class DistributoreDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static Distributore getById(int id) {
@@ -31,7 +31,6 @@ public class DistributoreDAO {
 		Distributore p = em.find(Distributore.class, id);
 
 		em.close();
-		emf.close();
 
 		return p;
 	}
@@ -49,7 +48,7 @@ public class DistributoreDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static void refresh(Distributore a) {
@@ -60,7 +59,7 @@ public class DistributoreDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+
 	}
 
 }

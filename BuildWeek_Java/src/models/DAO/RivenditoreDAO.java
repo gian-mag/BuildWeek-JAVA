@@ -1,10 +1,15 @@
 package models.DAO;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import models.JpaUtil.JpaUtil;
+import models.classes.Biglietto;
 import models.classes.Rivenditore;
 
 public class RivenditoreDAO {
@@ -20,7 +25,7 @@ public class RivenditoreDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static Rivenditore getById(int id) {
@@ -31,7 +36,6 @@ public class RivenditoreDAO {
 		Rivenditore p = em.find(Rivenditore.class, id);
 
 		em.close();
-		emf.close();
 
 		return p;
 	}
@@ -49,7 +53,7 @@ public class RivenditoreDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static void refresh(Rivenditore a) {
@@ -60,6 +64,7 @@ public class RivenditoreDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+
 	}
+
 }

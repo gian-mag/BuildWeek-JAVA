@@ -7,6 +7,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.*;
+import models.enums.Vidima;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,18 +34,21 @@ public class Biglietto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int idBiglietto;
 
 	private LocalDate dataEmissione = LocalDate.now();
 
-	private boolean vidimato = false;
+	@Enumerated(EnumType.STRING)
+	private Vidima vidimato = Vidima.FALSE;
+	
+	private LocalDate dataVidimazione;
 
 	@ManyToOne
 	@JoinColumn(name="id")
-	@Column(name = "rivenditore_id")
 	private Rivenditore rivenditore;
 	
 	@ManyToMany(mappedBy = "biglietti")
+	@ToString.Exclude
 	private Set<Mezzo> mezzo;
 	
 }

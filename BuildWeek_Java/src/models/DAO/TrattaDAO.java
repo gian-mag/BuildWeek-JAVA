@@ -20,7 +20,7 @@ public class TrattaDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+		
 	}
 
 	public static Tratta getById(int id) {
@@ -29,9 +29,8 @@ public class TrattaDAO {
 		EntityManager em = emf.createEntityManager();
 
 		Tratta p = em.find(Tratta.class, id);
-
+		
 		em.close();
-		emf.close();
 
 		return p;
 	}
@@ -49,7 +48,7 @@ public class TrattaDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+		
 	}
 
 	public static void refresh(Tratta a) {
@@ -60,7 +59,7 @@ public class TrattaDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+		
 	}
 
 }

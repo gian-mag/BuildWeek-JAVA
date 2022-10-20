@@ -1,11 +1,17 @@
 package models.DAO;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import models.JpaUtil.JpaUtil;
 import models.classes.Abbonamento;
+import models.classes.Biglietto;
+import models.classes.Mezzo;
 
 public class AbbonamentoDAO {
 
@@ -20,7 +26,7 @@ public class AbbonamentoDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static Abbonamento getById(int id) {
@@ -31,7 +37,6 @@ public class AbbonamentoDAO {
 		Abbonamento p = em.find(Abbonamento.class, id);
 
 		em.close();
-		emf.close();
 
 		return p;
 	}
@@ -49,7 +54,7 @@ public class AbbonamentoDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static void refresh(Abbonamento a) {
@@ -60,7 +65,33 @@ public class AbbonamentoDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+
+	}
+
+	public static void abbonamentoVidima(Biglietto b, Mezzo m) {
+
+		EntityManagerFactory emf = JpaUtil.getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction t = em.getTransaction();
+
+		Set<Mezzo> mezzi = new HashSet<>();
+		mezzi.add(m);
+		b.setMezzo(mezzi);
+
+		Query query = em.createNativeQuery(
+				"INSERT INTO mezzo_biglietto (mezzo_id_mezzo, biglietti_idbiglietto) VALUES (:d, :b)"
+				);
+
+		t.begin();
+
+		query.setParameter("d", m.getIdMezzo());
+		query.setParameter("b", b.getIdBiglietto());
+
+		query.executeUpdate();
+		t.commit();
+
+		em.close();
+
 	}
 
 }

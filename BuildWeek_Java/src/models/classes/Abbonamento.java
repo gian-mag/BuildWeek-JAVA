@@ -2,10 +2,7 @@ package models.classes;
 
 import java.time.LocalDate;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +23,9 @@ public class Abbonamento extends Biglietto {
 	@Enumerated(EnumType.STRING)
 	private Emissione emissione;
 
-	private Utente utente;
+	@ManyToOne
+	@JoinColumn(name = "tessera_id")
+	private Tessera tessera;
 
 	private LocalDate dataEmissione = LocalDate.now();
 

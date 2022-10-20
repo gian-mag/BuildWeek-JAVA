@@ -20,7 +20,7 @@ public class UtenteDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+		
 	}
 
 	public static Utente getById(int id) {
@@ -31,8 +31,7 @@ public class UtenteDAO {
 		Utente p = em.find(Utente.class, id);
 
 		em.close();
-		emf.close();
-
+		
 		return p;
 	}
 
@@ -49,7 +48,7 @@ public class UtenteDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+		
 	}
 
 	public static void refresh(Utente a) {
@@ -60,6 +59,6 @@ public class UtenteDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+		
 	}
 }

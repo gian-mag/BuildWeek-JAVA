@@ -19,10 +19,14 @@ import javax.persistence.*;
 public abstract class Mezzo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private int id;
+    @Column(name = "id_mezzo", nullable = false)
+    private int idMezzo;
     
+	@Enumerated(EnumType.STRING)
     private Status status = Status.SERVIZIO;
+    
+    @OneToMany
+    private Set<Viaggio> viaggi;
     
     @ManyToMany
     private Set<Biglietto> biglietti;

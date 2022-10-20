@@ -6,6 +6,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,10 +38,10 @@ public class Rivenditore {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Enumerated(EnumType.STRING)
 	private Zona zona;
 	
 	@OneToMany(mappedBy = "rivenditore")
 	private Set<Biglietto> bigliettiEmessi;
-//	private Set<Abbonamento> abbonamentiEmessi;
 
 }

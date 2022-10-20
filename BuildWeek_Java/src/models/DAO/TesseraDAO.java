@@ -3,8 +3,10 @@ package models.DAO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import models.JpaUtil.JpaUtil;
+import models.classes.Mezzo;
 import models.classes.Tessera;
 
 public class TesseraDAO {
@@ -20,7 +22,7 @@ public class TesseraDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static Tessera getById(int id) {
@@ -31,7 +33,6 @@ public class TesseraDAO {
 		Tessera p = em.find(Tessera.class, id);
 
 		em.close();
-		emf.close();
 
 		return p;
 	}
@@ -49,7 +50,7 @@ public class TesseraDAO {
 		t.commit();
 
 		em.close();
-		emf.close();
+
 	}
 
 	public static void refresh(Tessera a) {
@@ -60,6 +61,29 @@ public class TesseraDAO {
 		em.refresh(a);
 
 		em.close();
-		emf.close();
+
 	}
+
+	public static void rinnovaTessera(Tessera tess) {
+
+		EntityManagerFactory emf = JpaUtil.getEntityManagerFactory();
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction t = em.getTransaction();
+
+		tess.rinnovaTessera();
+
+		Query q = em.createQuery("UPDATE Tessera t SET scadenzaTessera = :s WHERE t.id = :id");
+
+		t.begin();
+
+		q.setParameter("s", tess.getScadenzaTessera());
+		q.setParameter("id", tess.getId());
+
+		q.executeUpdate();
+		t.commit();
+
+		em.close();
+
+	}
+
 }

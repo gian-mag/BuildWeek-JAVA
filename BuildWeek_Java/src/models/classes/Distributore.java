@@ -25,6 +25,6 @@ public class Distributore extends Rivenditore{
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "stato_servizio")
-	private StatoServizio inServizio;
+	private StatoServizio inServizio = StatoServizio.IN_SERVIZIO;
 
 }
